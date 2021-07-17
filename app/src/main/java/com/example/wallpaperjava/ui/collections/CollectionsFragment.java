@@ -27,7 +27,7 @@ public class CollectionsFragment extends Fragment {
         binding = FragmentCollectionsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
+        final TextView textView = binding.textCollections;
         collectionsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
