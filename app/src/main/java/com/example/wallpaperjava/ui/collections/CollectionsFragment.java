@@ -1,4 +1,4 @@
-package com.example.wallpaperjava.ui.slideshow;
+package com.example.wallpaperjava.ui.collections;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.wallpaperjava.R;
-import com.example.wallpaperjava.databinding.FragmentSlideshowBinding;
+import com.example.wallpaperjava.databinding.FragmentCollectionsBinding;
 
-public class SlideshowFragment extends Fragment {
+public class CollectionsFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
-    private FragmentSlideshowBinding binding;
+    private CollectionsViewModel collectionsViewModel;
+    private FragmentCollectionsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        collectionsViewModel =
+                new ViewModelProvider(this).get(CollectionsViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentCollectionsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textHome;
+        collectionsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -1,4 +1,4 @@
-package com.example.wallpaperjava.ui.gallery;
+package com.example.wallpaperjava.ui.photos;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.wallpaperjava.R;
-import com.example.wallpaperjava.databinding.FragmentGalleryBinding;
+import com.example.wallpaperjava.databinding.FragmentPhotosBinding;
 
-public class GalleryFragment extends Fragment {
+public class PhotosFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
-    private FragmentGalleryBinding binding;
+    private PhotosViewModel photosViewModel;
+    private FragmentPhotosBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        photosViewModel =
+                new ViewModelProvider(this).get(PhotosViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
+        binding = FragmentPhotosBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        photosViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

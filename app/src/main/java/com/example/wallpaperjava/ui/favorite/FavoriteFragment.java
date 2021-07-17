@@ -1,4 +1,4 @@
-package com.example.wallpaperjava.ui.home;
+package com.example.wallpaperjava.ui.favorite;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.wallpaperjava.R;
-import com.example.wallpaperjava.databinding.FragmentHomeBinding;
+import com.example.wallpaperjava.databinding.FragmentFavoriteBinding;
 
-public class HomeFragment extends Fragment {
+public class FavoriteFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
+    private FavoriteViewModel favoriteViewModel;
+    private FragmentFavoriteBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        favoriteViewModel =
+                new ViewModelProvider(this).get(FavoriteViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentFavoriteBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textSlideshow;
+        favoriteViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
