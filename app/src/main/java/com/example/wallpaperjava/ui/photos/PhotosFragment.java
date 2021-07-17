@@ -4,36 +4,30 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wallpaperjava.databinding.FragmentPhotosBinding;
 
 public class PhotosFragment extends Fragment {
 
-    private PhotosViewModel photosViewModel;
     private FragmentPhotosBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        photosViewModel =
-                new ViewModelProvider(this).get(PhotosViewModel.class);
+
 
         binding = FragmentPhotosBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textPhotos;
-        photosViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        //added progressBar && recyclerView
+        final RecyclerView recyclerView = binding.rvFragmentPhotos;
+        final ProgressBar progressBar = binding.pbFragmentPhotos;
+
+
         return root;
     }
 
