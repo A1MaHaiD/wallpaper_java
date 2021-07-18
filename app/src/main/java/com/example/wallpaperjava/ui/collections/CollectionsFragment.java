@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.wallpaperjava.R;
 import com.example.wallpaperjava.adapters.CollectionsAdapter;
 import com.example.wallpaperjava.databinding.FragmentCollectionsBinding;
+
 import com.example.wallpaperjava.models.Collection;
 import com.example.wallpaperjava.utils.Functions;
 import com.example.wallpaperjava.websevrices.ApiInterface;
@@ -22,14 +23,15 @@ import com.example.wallpaperjava.websevrices.ServiceGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import butterknife.Unbinder;
-import kotlin.Function;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class CollectionsFragment extends Fragment {
     private final String TAG = CollectionsFragment.class.getSimpleName();
@@ -43,7 +45,7 @@ public class CollectionsFragment extends Fragment {
     private Unbinder unbinder;
     private FragmentCollectionsBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(@NonNull LayoutInflater inflater, @NonNull
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentCollectionsBinding.inflate(inflater, container, false);

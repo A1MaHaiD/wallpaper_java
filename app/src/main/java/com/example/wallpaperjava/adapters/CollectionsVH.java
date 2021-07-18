@@ -3,6 +3,8 @@ package com.example.wallpaperjava.adapters;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.example.wallpaperjava.R;
 import com.example.wallpaperjava.utils.SquareImage;
 
@@ -17,7 +19,7 @@ public class CollectionsVH {
     @BindView(R.id.si_item_collections)
     SquareImage collectionPhoto;
 
-    public CollectionsVH(View view){
-        ButterKnife.bind(this, view);
+    public CollectionsVH(@NonNull View itemView){
+        ButterKnife.bind(this, itemView);
     }
 }

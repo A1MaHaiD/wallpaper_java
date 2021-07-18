@@ -23,6 +23,8 @@ import com.example.wallpaperjava.utils.GlideApp;
 import com.example.wallpaperjava.websevrices.ApiInterface;
 import com.example.wallpaperjava.websevrices.ServiceGenerator;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +38,7 @@ import retrofit2.Response;
 
 public class CollectionFragment extends Fragment {
 
-    private final String TAG = CollectionFragment.class.getSimpleName();
+    private String TAG = CollectionFragment.class.getSimpleName();
     @BindView(R.id.tv_username)
     TextView username;
     @BindView(R.id.tv_description_fragment_collection)
@@ -70,6 +72,7 @@ public class CollectionFragment extends Fragment {
         recyclerView.setAdapter(photosAdapter);
 
         Bundle bundle = getArguments();
+        assert bundle != null;
         int collectionId = bundle.getInt("collectionId");
         showProgressBar(true);
         getInformationOfCollection(collectionId);
@@ -84,9 +87,10 @@ public class CollectionFragment extends Fragment {
         Call<Collection> call = apiInterface.getInformationOfCollection(collectionId);
         call.enqueue(new Callback<Collection>() {
             @Override
-            public void onResponse(Call<Collection> call, Response<Collection> response) {
+            public void onResponse(@NotNull Call<Collection> call, @NotNull Response<Collection> response) {
                 if (response.isSuccessful()) {
                     Collection collection = response.body();
+                    assert collection != null;
                     title.setText(collection.getTitle());
                     description.setText(collection.getDescription());
                     username.setText(collection.getUser().getUsername());
@@ -100,7 +104,7 @@ public class CollectionFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<Collection> call, Throwable t) {
+            public void onFailure(@NotNull Call<Collection> call, @NotNull Throwable t) {
                 Log.d(TAG, "Fail " + t.getMessage());
             }
         });
@@ -111,8 +115,9 @@ public class CollectionFragment extends Fragment {
         Call<List<Photo>> call = apiInterface.getPhotosOfCollection(collectionId);
         call.enqueue(new Callback<List<Photo>>() {
             @Override
-            public void onResponse(Call<List<Photo>> call, Response<List<Photo>> response) {
+            public void onResponse(@NotNull Call<List<Photo>> call, @NotNull Response<List<Photo>> response) {
                 if (response.isSuccessful()) {
+                    assert response.body() != null;
                     photos.addAll(response.body());
                     photosAdapter.notifyDataSetChanged();
                 } else {
@@ -122,7 +127,7 @@ public class CollectionFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<Photo>> call, Throwable t) {
+            public void onFailure(@NotNull Call<List<Photo>> call, @NotNull Throwable t) {
                 Log.d(TAG, "Fail " + t.getMessage());
                 showProgressBar(false);
             }

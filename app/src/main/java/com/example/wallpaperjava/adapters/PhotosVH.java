@@ -22,7 +22,7 @@ public class PhotosVH extends RecyclerView.ViewHolder {
     TextView username;
     @BindView(R.id.si_item_photo)
     SquareImage photo;
-    public PhotosVH(@NonNull @NotNull View itemView) {
+    public PhotosVH(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this,itemView);
     }

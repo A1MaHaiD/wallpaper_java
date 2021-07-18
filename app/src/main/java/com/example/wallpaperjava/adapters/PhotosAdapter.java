@@ -12,8 +12,6 @@ import com.example.wallpaperjava.R;
 import com.example.wallpaperjava.models.Photo;
 import com.example.wallpaperjava.utils.GlideApp;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 public class PhotosAdapter extends RecyclerView.Adapter<PhotosVH> {
@@ -25,16 +23,15 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosVH> {
         this.photos =  photos;
     }
     @NonNull
-    @NotNull
     @Override
-    public PhotosVH onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public PhotosVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_photo,parent,false);
         return new PhotosVH(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull PhotosVH holder, int position) {
+    public void onBindViewHolder(PhotosVH holder, int position) {
         Photo photo = photos.get(position);
         holder.username.setText(photo.getUser().getUsername());
         GlideApp

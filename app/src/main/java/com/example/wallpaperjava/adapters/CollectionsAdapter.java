@@ -29,29 +29,29 @@ public class CollectionsAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return collections.get(position);
+    public Object getItem(int i) {
+        return collections.get(i);
     }
 
     @Override
-    public long getItemId(int position) {
-        return collections.get(position).getId();
+    public long getItemId(int i) {
+        return collections.get(i).getId();
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int i, View view, ViewGroup parent) {
         final CollectionsVH collectionsVH;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context)
+        if (view == null) {
+            view = LayoutInflater.from(context)
                     .inflate(R.layout.item_collection, parent, false);
-            collectionsVH = new CollectionsVH(convertView);
-            convertView.setTag(collectionsVH);
+            collectionsVH = new CollectionsVH(view);
+            view.setTag(collectionsVH);
         } else {
-            collectionsVH = (CollectionsVH) convertView.getTag();
+            collectionsVH = (CollectionsVH) view.getTag();
         }
 
-        ButterKnife.bind(this, convertView);
-        Collection collection = collections.get(position);
+        ButterKnife.bind(this, view);
+        Collection collection = collections.get(i);
         if (collection.getTitle() != null) {
             collectionsVH.title.setText(collection.getTitle());
         }
@@ -60,6 +60,6 @@ public class CollectionsAdapter extends BaseAdapter {
                 .with(context)
                 .load(collection.getCoverPhoto().getUrl().getRegular())
                 .into(collectionsVH.collectionPhoto);
-        return convertView;
+        return view;
     }
 }

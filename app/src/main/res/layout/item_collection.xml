@@ -35,4 +35,5 @@
             android:textColor="@color/white_1" />
 
     </RelativeLayout>
+
 </FrameLayout>
