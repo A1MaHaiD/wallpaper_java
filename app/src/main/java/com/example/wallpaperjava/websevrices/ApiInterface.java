@@ -7,6 +7,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface ApiInterface {
     @GET("photos")
@@ -15,4 +16,9 @@ public interface ApiInterface {
     @GET("collections")
     Call<List<Collection>> getCollections();
 
+    @GET("collections/{id}")
+    Call<Collection> getInformationOfCollection(@Path("id") int id);
+
+    @GET("collections/{}/photos")
+    Call<List<Photo>> getPhotosOfCollection(@Path("id") int id);
 }

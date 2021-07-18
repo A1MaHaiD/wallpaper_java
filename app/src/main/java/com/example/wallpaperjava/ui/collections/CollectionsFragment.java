@@ -15,6 +15,7 @@ import com.example.wallpaperjava.R;
 import com.example.wallpaperjava.adapters.CollectionsAdapter;
 import com.example.wallpaperjava.databinding.FragmentCollectionsBinding;
 import com.example.wallpaperjava.models.Collection;
+import com.example.wallpaperjava.utils.Functions;
 import com.example.wallpaperjava.websevrices.ApiInterface;
 import com.example.wallpaperjava.websevrices.ServiceGenerator;
 
@@ -23,7 +24,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 import butterknife.Unbinder;
+import kotlin.Function;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,6 +57,16 @@ public class CollectionsFragment extends Fragment {
         getCollections();
 
         return root;
+    }
+
+    @OnItemClick(R.id.gv_fragment_collections)
+    public void setGridView(int position){
+        Collection collection = collections.get(position);
+        Bundle bundle = new Bundle();
+        bundle.putInt("collectionId", collection.getId());
+        CollectionFragment collectionFragment = new CollectionFragment();
+        collectionFragment.setArguments(bundle);
+        Functions.changeMainFragmentWithBack(getActivity(), collectionFragment);
     }
 
     private void getCollections() {
