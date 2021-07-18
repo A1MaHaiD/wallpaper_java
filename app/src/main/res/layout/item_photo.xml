@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_photo_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -12,9 +13,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/transparent_color"
         android:gravity="bottom"
         android:orientation="horizontal"
-        android:background="@color/transparent_color"
         android:padding="8dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -26,14 +27,14 @@
 
         <TextView
             android:id="@+id/tv_username"
+            style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
             android:text="@string/oleklook"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
             android:textColor="@color/white_1"
-            android:layout_marginLeft="8dp"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 </FrameLayout>
