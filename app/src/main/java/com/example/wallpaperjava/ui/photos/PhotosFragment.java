@@ -72,14 +72,14 @@ public class PhotosFragment extends Fragment {
                     photos.addAll(response.body());
                     photosAdapter.notifyDataSetChanged();
                 } else {
-                    Log.e(TAG, "fail " + response.message());
+                    Log.e(TAG, "Fail " + response.message());
                 }
                 showProgressBar(false);
             }
 
             @Override
             public void onFailure(Call<List<Photo>> call, Throwable t) {
-                Log.e(TAG, "fail " + t.getMessage());
+                Log.e(TAG, "Fail " + t.getMessage());
                 showProgressBar(false);
             }
         });

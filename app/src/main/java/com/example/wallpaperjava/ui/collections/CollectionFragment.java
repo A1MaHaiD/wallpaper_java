@@ -72,9 +72,9 @@ public class CollectionFragment extends Fragment {
         recyclerView.setAdapter(photosAdapter);
 
         Bundle bundle = getArguments();
-        assert bundle != null;
         int collectionId = bundle.getInt("collectionId");
         showProgressBar(true);
+
         getInformationOfCollection(collectionId);
         getPhotosOfCollection(collectionId);
 
@@ -90,7 +90,6 @@ public class CollectionFragment extends Fragment {
             public void onResponse(@NotNull Call<Collection> call, @NotNull Response<Collection> response) {
                 if (response.isSuccessful()) {
                     Collection collection = response.body();
-                    assert collection != null;
                     title.setText(collection.getTitle());
                     description.setText(collection.getDescription());
                     username.setText(collection.getUser().getUsername());
@@ -117,7 +116,6 @@ public class CollectionFragment extends Fragment {
             @Override
             public void onResponse(@NotNull Call<List<Photo>> call, @NotNull Response<List<Photo>> response) {
                 if (response.isSuccessful()) {
-                    assert response.body() != null;
                     photos.addAll(response.body());
                     photosAdapter.notifyDataSetChanged();
                 } else {

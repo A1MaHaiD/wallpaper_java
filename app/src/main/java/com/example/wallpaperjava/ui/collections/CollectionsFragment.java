@@ -34,6 +34,7 @@ import retrofit2.Response;
 
 
 public class CollectionsFragment extends Fragment {
+
     private final String TAG = CollectionsFragment.class.getSimpleName();
     @BindView(R.id.pb_fragment_collections)
     ProgressBar progressBar;
@@ -45,7 +46,7 @@ public class CollectionsFragment extends Fragment {
     private Unbinder unbinder;
     private FragmentCollectionsBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater, @NonNull
+    public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentCollectionsBinding.inflate(inflater, container, false);
