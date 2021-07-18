@@ -4,10 +4,11 @@
     android:layout_height="match_parent">
 
     <com.example.wallpaperjava.utils.SquareImage
-        android:layout_width="match_parent"
         android:id="@+id/si_item_collections"
-        android:scaleType="centerCrop"
-        android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,22 +17,22 @@
 
         <TextView
             android:id="@+id/tv_title_item_collections"
+            style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:text="@string/beautiful_mountain"
-            android:textColor="@color/white_1"
             android:layout_centerInParent="true"
-            android:textAlignment="center"/>
+            android:text="@string/beautiful_mountain"
+            android:textAlignment="center"
+            android:textColor="@color/white_1" />
 
         <TextView
             android:id="@+id/tv_total_photos_item_collections"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:text="@string/_12_photos"
-            android:textColor="@color/white_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/white_1" />
 
     </RelativeLayout>
 </FrameLayout>

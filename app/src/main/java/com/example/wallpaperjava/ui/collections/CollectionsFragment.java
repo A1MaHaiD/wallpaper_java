@@ -29,28 +29,27 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CollectionsFragment extends Fragment {
-
-    private FragmentCollectionsBinding binding;
-
     private final String TAG = CollectionsFragment.class.getSimpleName();
-    @BindView(R.id.gv_fragment_collections)
-    GridView gridView;
     @BindView(R.id.pb_fragment_collections)
     ProgressBar progressBar;
+    @BindView(R.id.gv_fragment_collections)
+    GridView gridView;
 
     private CollectionsAdapter collectionsAdapter;
     private List<Collection> collections = new ArrayList<>();
     private Unbinder unbinder;
+    private FragmentCollectionsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentCollectionsBinding.inflate(inflater, container, false);
-        //@maybe something wrong
         View root = binding.getRoot();
         unbinder = ButterKnife.bind(this, root);
+
         collectionsAdapter = new CollectionsAdapter(getActivity(), collections);
         gridView.setAdapter(collectionsAdapter);
+
         showProgressBar(true);
         getCollections();
 
@@ -59,7 +58,7 @@ public class CollectionsFragment extends Fragment {
 
     private void getCollections() {
         ApiInterface apiInterface = ServiceGenerator.createService(ApiInterface.class);
-        Call<List<Collection>> call = apiInterface.getCollection();
+        Call<List<Collection>> call = apiInterface.getCollections();
         call.enqueue(new Callback<List<Collection>>() {
             @Override
             public void onResponse(Call<List<Collection>> call, Response<List<Collection>> response) {

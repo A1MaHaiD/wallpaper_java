@@ -13,6 +13,6 @@ public interface ApiInterface {
     Call<List<Photo>> getPhotos();
 
     @GET("collections")
-    Call<List<Collection>> getCollection();
+    Call<List<Collection>> getCollections();
 
 }

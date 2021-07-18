@@ -30,6 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PhotosFragment extends Fragment {
+
     private final String TAG = PhotosFragment.class.getSimpleName();
     @BindView(R.id.pb_fragment_photos)
     ProgressBar progressBar;
@@ -38,7 +39,6 @@ public class PhotosFragment extends Fragment {
 
     private PhotosAdapter photosAdapter;
     private List<Photo> photos = new ArrayList<>();
-
     private Unbinder unbinder;
     private FragmentPhotosBinding binding;
 
@@ -47,11 +47,9 @@ public class PhotosFragment extends Fragment {
 
 
         binding = FragmentPhotosBinding.inflate(inflater, container, false);
-        //@maybe something wrong
         View root = binding.getRoot();
         unbinder = ButterKnife.bind(this, root);
 
-        //@recyclerView
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
 
