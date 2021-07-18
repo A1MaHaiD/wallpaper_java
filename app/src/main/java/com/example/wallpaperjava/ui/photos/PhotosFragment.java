@@ -48,12 +48,9 @@ public class PhotosFragment extends Fragment {
 
         binding = FragmentPhotosBinding.inflate(inflater, container, false);
         //@maybe something wrong
-        unbinder = ButterKnife.bind(this, binding.getRoot());
         View root = binding.getRoot();
-//        //@maybe something wrong
-//        //added progressBar && recyclerView
-//        final RecyclerView recyclerView = binding.rvFragmentPhotos;
-//        final ProgressBar progressBar = binding.pbFragmentPhotos;
+        unbinder = ButterKnife.bind(this, root);
+
         //@recyclerView
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);

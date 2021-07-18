@@ -1,41 +1,98 @@
 package com.example.wallpaperjava.ui.collections;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.wallpaperjava.R;
+import com.example.wallpaperjava.adapters.CollectionsAdapter;
 import com.example.wallpaperjava.databinding.FragmentCollectionsBinding;
+import com.example.wallpaperjava.models.Collection;
+import com.example.wallpaperjava.websevrices.ApiInterface;
+import com.example.wallpaperjava.websevrices.ServiceGenerator;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CollectionsFragment extends Fragment {
 
-//    private CollectionsViewModel collectionsViewModel;
     private FragmentCollectionsBinding binding;
+
+    private final String TAG = CollectionsFragment.class.getSimpleName();
+    @BindView(R.id.gv_fragment_collections)
+    GridView gridView;
+    @BindView(R.id.pb_fragment_collections)
+    ProgressBar progressBar;
+
+    private CollectionsAdapter collectionsAdapter;
+    private List<Collection> collections = new ArrayList<>();
+    private Unbinder unbinder;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-//        collectionsViewModel =
-//                new ViewModelProvider(this).get(CollectionsViewModel.class);
 
         binding = FragmentCollectionsBinding.inflate(inflater, container, false);
+        //@maybe something wrong
         View root = binding.getRoot();
+        unbinder = ButterKnife.bind(this, root);
+        collectionsAdapter = new CollectionsAdapter(getActivity(), collections);
+        gridView.setAdapter(collectionsAdapter);
+        showProgressBar(true);
+        getCollections();
 
-//        final TextView textView = binding.textCollections;
-//        collectionsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
         return root;
+    }
+
+    private void getCollections() {
+        ApiInterface apiInterface = ServiceGenerator.createService(ApiInterface.class);
+        Call<List<Collection>> call = apiInterface.getCollection();
+        call.enqueue(new Callback<List<Collection>>() {
+            @Override
+            public void onResponse(Call<List<Collection>> call, Response<List<Collection>> response) {
+                if (response.isSuccessful()) {
+                    collections.addAll(response.body());
+                    collectionsAdapter.notifyDataSetChanged();
+                } else {
+                    Log.e(TAG, "Fail " + response.message());
+                }
+                showProgressBar(false);
+            }
+
+            @Override
+            public void onFailure(Call<List<Collection>> call, Throwable t) {
+                Log.e(TAG, "Fail " + t.getMessage());
+                showProgressBar(false);
+            }
+        });
+    }
+
+    private void showProgressBar(boolean isShow) {
+        if (isShow) {
+            progressBar.setVisibility(View.VISIBLE);
+            gridView.setVisibility(View.GONE);
+        }
+        progressBar.setVisibility(View.GONE);
+        gridView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        unbinder.unbind();
         binding = null;
     }
 }
