@@ -30,9 +30,9 @@ public class RealmController {
         });
     }
 
-    public boolean isPhotoExist(Photo photo) {
+    public boolean isPhotoExist(String photoId) {
         Photo resultPhoto = realm.where(Photo.class)
-                .equalTo("id", photo.getId()).findFirst();
+                .equalTo("id", photoId).findFirst();
         if (resultPhoto == null)
             return false;
         return true;
