@@ -65,4 +65,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 //@realm
-//apply plugin: 'realm-android'
+apply plugin: 'realm-android'
