@@ -5,13 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.example.wallpaperjava.R;
 import com.example.wallpaperjava.models.Collection;
 import com.example.wallpaperjava.utils.GlideApp;
+import com.example.wallpaperjava.utils.SquareImage;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CollectionsAdapter extends BaseAdapter {
@@ -61,5 +66,18 @@ public class CollectionsAdapter extends BaseAdapter {
                 .load(collection.getCoverPhoto().getUrl().getRegular())
                 .into(collectionsVH.collectionPhoto);
         return view;
+    }
+
+    static class CollectionsVH {
+        @BindView(R.id.tv_title_item_collections)
+        TextView title;
+        @BindView(R.id.tv_total_photos_item_collections)
+        TextView totalPhotos;
+        @BindView(R.id.si_item_collections)
+        SquareImage collectionPhoto;
+
+        public CollectionsVH(@NonNull View itemView){
+            ButterKnife.bind(this, itemView);
+        }
     }
 }

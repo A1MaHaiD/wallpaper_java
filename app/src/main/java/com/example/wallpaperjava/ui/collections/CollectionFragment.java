@@ -39,13 +39,13 @@ import retrofit2.Response;
 public class CollectionFragment extends Fragment {
 
     private String TAG = CollectionFragment.class.getSimpleName();
-    @BindView(R.id.tv_username)
+    @BindView(R.id.tv_fragment_collection_username)
     TextView username;
-    @BindView(R.id.tv_description_fragment_collection)
+    @BindView(R.id.tv_fragment_collection_description)
     TextView description;
-    @BindView(R.id.civ_user_avatar)
+    @BindView(R.id.civ_fragment_collection_user_avatar)
     ImageView userAvatar;
-    @BindView(R.id.tv_title_fragment_collection)
+    @BindView(R.id.tv_fragment_collection_title)
     TextView title;
 
     @BindView(R.id.pb_fragment_collection)
